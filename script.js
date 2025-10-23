@@ -72,6 +72,7 @@ function playRound(){
     return computerScore, humanScore
 }
 
+//Play the game five times until an overall winner is declared.
 function playBestOfFive(){
     while ((computerScore + humanScore) < 5){
         playRound();
