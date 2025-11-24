@@ -8,7 +8,7 @@ body {
 }
 
 /* HUMAN CHOICES OPTIONS STYLING */
-.human-choices, ul {
+div.human-choices, ul, li, .human-choices-option{
     display: flex;
 }
 
@@ -22,7 +22,15 @@ img.human-choices-img {
 }
 
 li {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.human-choices-caption {
     padding: 0;
     margin: 0;
 }
