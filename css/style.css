@@ -1,8 +1,28 @@
-button.human-selection {
+/* PAGE SETTINGS  */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* HUMAN CHOICES OPTIONS STYLING */
+.human-choices, ul {
+    display: flex;
+}
+
+button.human-choices-button {
     background: none;
     border: none;
 }
 
-img.human-choice {
+img.human-choices-img {
     height: 400px;
+}
+
+li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
