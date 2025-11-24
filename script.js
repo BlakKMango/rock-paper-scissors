@@ -72,18 +72,4 @@ function playRound(){
     return computerScore, humanScore
 }
 
-//Play the game five times until an overall winner is declared.
-function playBestOfFive(){
-    while ((computerScore + humanScore) < 5){
-        playRound();
-    }
-    if (humanScore > computerScore){
-        console.log("Well done. Another victory for humanity.");
-    } else {
-        console.log("Better luck next time human.")
-    }
-}
 
-
-//Play the game!
-playBestOfFive()
