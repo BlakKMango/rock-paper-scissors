@@ -1,3 +1,13 @@
+/* === FONT IMPORTS === */
+@font-face {
+  font-family: "Barrio";
+  src: url("../fonts/Barrio-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 /* PAGE SETTINGS  */
 body {
     min-height: 100vh;
@@ -8,7 +18,7 @@ body {
 }
 
 /* HUMAN CHOICES OPTIONS STYLING */
-div.human-choices, ul, li, .human-choices-option{
+div.human-choices, ul, li, .human-choices-option {
     display: flex;
 }
 
@@ -33,4 +43,9 @@ li {
 .human-choices-caption {
     padding: 0;
     margin: 0;
+}
+
+h4 {
+    font-family: "Barrio";
+    font-size: 48px;
 }
