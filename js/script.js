@@ -25,17 +25,15 @@ function loadGameStartState() {
 }
 
 function playRound(event) {
-    if (clickCount === 4) {
-        getHumanChoice(event);
-        getComputerChoice()
-        decideWinner(humanChoice, computerChoice)
-        console.log({computerScore, humanScore});
+    getHumanChoice(event);
+    getComputerChoice()
+    decideWinner(humanChoice, computerChoice)
+    console.log({computerScore, humanScore});
+
+    clickCount++
+
+    if (clickCount === 5){
         gameOver()
-    } else {
-        getHumanChoice(event);
-        getComputerChoice()
-        decideWinner(humanChoice, computerChoice)
-        console.log({computerScore, humanScore});
     }
 }
 
@@ -100,7 +98,4 @@ gameStartButton.addEventListener("click", startGame)
 
 humanChoiceButton.forEach(button => {
     button.addEventListener("click", playRound);
-    button.addEventListener("click", () => {
-        clickCount++
-    })
 })
