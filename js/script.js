@@ -1,9 +1,3 @@
-// Prompt the user to enter a choice
-// return the user and computer's choice
-// Assign a winner
-// Track the score
-
-
 //VARIABLES
 const gameStartButton = document.createElement("button")
 const startGameScreen = document.querySelector("#startGameScreen")
@@ -16,6 +10,10 @@ let clickCount = 0
 let humanChoice;
 let computerChoice;
 let winner;
+
+
+
+
 
 //===FUNCTIONS===//
 
@@ -40,8 +38,6 @@ function playRound(event) {
         console.log({computerScore, humanScore});
     }
 }
-
-
 
 function startGame(){
     startGameScreen.setAttribute("style", "display: none")
