@@ -25,18 +25,12 @@ function loadGameStartState() {
     startGameScreen.appendChild(gameStartButton)
 }
 
-function playRound(){
+function playRound(event) {
+    getHumanChoice(event);
+    getComputerChoice()
     decideWinner(humanChoice, computerChoice)
-    //Add a point to the winner's score
-    if (winner === "computer"){
-        computerScore++
-    } else if (winner === "human"){
-        humanScore++
-    }
-
-    console.log("Score: You = " + humanScore + ". Computer =" + computerScore)
-    return computerScore, humanScore
 }
+
 
 function startGame(){
     startGameScreen.setAttribute("style", "display: none")
@@ -44,7 +38,7 @@ function startGame(){
 }
 
 function getHumanChoice(event) {
-    let humanChoice = event.currentTarget.id.charAt(0).toUpperCase() + event.currentTarget.id.slice(1);
+    humanChoice = event.currentTarget.id.charAt(0).toUpperCase() + event.currentTarget.id.slice(1);
     console.log("You chose " + humanChoice);
     return humanChoice
 }
@@ -87,6 +81,5 @@ document.addEventListener("DOMContentLoaded", loadGameStartState)
 gameStartButton.addEventListener("click", startGame)
 
 humanChoiceButton.forEach(button => {
-    button.addEventListener("click", getHumanChoice);
-    button.addEventListener("click", getComputerChoice);
-    })
+    button.addEventListener("click", playRound);
+})
