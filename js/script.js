@@ -26,7 +26,6 @@ function loadGameStartState() {
 }
 
 function playRound(){
-    getComputerChoice()
     decideWinner(humanChoice, computerChoice)
     //Add a point to the winner's score
     if (winner === "computer"){
@@ -88,5 +87,6 @@ document.addEventListener("DOMContentLoaded", loadGameStartState)
 gameStartButton.addEventListener("click", startGame)
 
 humanChoiceButton.forEach(button => {
-    button.addEventListener("click", getHumanChoice)
+    button.addEventListener("click", getHumanChoice);
+    button.addEventListener("click", getComputerChoice);
     })
