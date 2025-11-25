@@ -12,6 +12,7 @@ const humanChoiceButton = document.querySelectorAll(".human-choices-button");
 
 let humanScore = 0
 let computerScore = 0
+let clickCount = 0
 let humanChoice;
 let computerChoice;
 let winner;
@@ -26,15 +27,34 @@ function loadGameStartState() {
 }
 
 function playRound(event) {
-    getHumanChoice(event);
-    getComputerChoice()
-    decideWinner(humanChoice, computerChoice)
+    if (clickCount === 4) {
+        getHumanChoice(event);
+        getComputerChoice()
+        decideWinner(humanChoice, computerChoice)
+        console.log({computerScore, humanScore});
+        gameOver()
+    } else {
+        getHumanChoice(event);
+        getComputerChoice()
+        decideWinner(humanChoice, computerChoice)
+        console.log({computerScore, humanScore});
+    }
 }
+
 
 
 function startGame(){
     startGameScreen.setAttribute("style", "display: none")
     inGameScreen.setAttribute("style", "display: flex")
+}
+
+function gameOver(){
+    startGameScreen.setAttribute("style", "display: flex")
+    inGameScreen.setAttribute("style", "display: none")
+
+    humanScore = 0;
+    computerScore = 0;
+    clickCount = 0
 }
 
 function getHumanChoice(event) {
@@ -65,9 +85,11 @@ function decideWinner(humanChoice, computerChoice){
         || (humanChoice === "Paper" && computerChoice === "Rock")){
         winner = "human";
         console.log("You win!");
+        humanScore++
     } else {
         winner = "computer";
         console.log("Computer wins!")
+        computerScore++
     }
     return winner;
 }
@@ -82,4 +104,7 @@ gameStartButton.addEventListener("click", startGame)
 
 humanChoiceButton.forEach(button => {
     button.addEventListener("click", playRound);
+    button.addEventListener("click", () => {
+        clickCount++
+    })
 })
