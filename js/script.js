@@ -8,6 +8,7 @@
 const gameStartButton = document.createElement("button")
 const startGameScreen = document.querySelector("#startGameScreen")
 const inGameScreen = document.querySelector(".human-choices")
+const humanChoiceButton = document.querySelectorAll(".human-choices-button");
 
 let humanScore = 0
 let computerScore = 0
@@ -15,8 +16,40 @@ let humanChoice;
 let computerChoice;
 let winner;
 
-//FUNCTIONS
-//Randomly choose one: Rock, Paper, or Scissors and show choice
+//===FUNCTIONS===//
+
+function loadGameStartState() {
+    gameStartButton.setAttribute("style",
+        "color: white; background-color: black; width: 200px; height: 100px; border-radius: 20px");
+    gameStartButton.textContent = "Play"
+    startGameScreen.appendChild(gameStartButton)
+}
+
+function playRound(){
+    getComputerChoice()
+    decideWinner(humanChoice, computerChoice)
+    //Add a point to the winner's score
+    if (winner === "computer"){
+        computerScore++
+    } else if (winner === "human"){
+        humanScore++
+    }
+
+    console.log("Score: You = " + humanScore + ". Computer =" + computerScore)
+    return computerScore, humanScore
+}
+
+function startGame(){
+    startGameScreen.setAttribute("style", "display: none")
+    inGameScreen.setAttribute("style", "display: flex")
+}
+
+function getHumanChoice(event) {
+    let humanChoice = event.currentTarget.id.charAt(0).toUpperCase() + event.currentTarget.id.slice(1);
+    console.log("You chose " + humanChoice);
+    return humanChoice
+}
+
 function getComputerChoice(){
     let randomNumber = Math.random() * (3 - 0) + 0;
     if (randomNumber < 1){
@@ -29,14 +62,7 @@ function getComputerChoice(){
     console.log("Computer chose " + computerChoice)
     return computerChoice
 }
-// Prompt the user to randomly choose one: Rock, Paper, or Scissors and show choice
-function getHumanChoice(event) {
-    const humanChoice = event.currentTarget.id.charAt(0).toUpperCase() + event.currentTarget.id.slice(1);
-    console.log("You chose " + humanChoice);
-    return humanChoice
-}
 
-//Show who the winner is in the console
 function decideWinner(humanChoice, computerChoice){
     if (humanChoice === computerChoice){
         console.log("It's a draw.");
@@ -53,49 +79,14 @@ function decideWinner(humanChoice, computerChoice){
     return winner;
 }
 
-//Play a single round
-function playRound(){
-    startGame()
-    getHumanChoice()
-    getComputerChoice()
-    decideWinner(humanChoice, computerChoice)
-    //Add a point to the winner's score
-    if (winner === "computer"){
-        computerScore++
-    } else if (winner === "human"){
-        humanScore++
-    }
-
-    console.log("Score: You = " + humanScore + ". Computer =" + computerScore)
-    return computerScore, humanScore
-}
-
-function loadGameStartState() {
-    gameStartButton.setAttribute("style",
-        "color: white; background-color: black; width: 200px; height: 100px; border-radius: 20px");
-    gameStartButton.textContent = "Play"
-    startGameScreen.appendChild(gameStartButton)
-}
-
-function startGame(){
-    startGameScreen.setAttribute("style", "display: none")
-    inGameScreen.setAttribute("style", "display: flex")
-}
 
 
 
+//===DOM MANIPULATION===//
 
-
-
-const humanSelection = document.querySelectorAll(".human-choices-button");
-humanSelection.forEach(button => {
-    button.addEventListener("click", getHumanChoice);
-})
-
-
-
-//===START===//
-
-//On page load
 document.addEventListener("DOMContentLoaded", loadGameStartState)
-gameStartButton.addEventListener("click", playRound)
+gameStartButton.addEventListener("click", startGame)
+
+humanChoiceButton.forEach(button => {
+    button.addEventListener("click", getHumanChoice)
+    })
