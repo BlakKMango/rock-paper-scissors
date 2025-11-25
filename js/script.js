@@ -3,6 +3,8 @@ const gameStartButton = document.createElement("button")
 const startGameScreen = document.querySelector("#startGameScreen")
 const inGameScreen = document.querySelector(".human-choices")
 const humanChoiceButton = document.querySelectorAll(".human-choices-button");
+const gameOverScreen = document.querySelector("#gameOverScreen")
+const overallWinner = document.querySelector("#whoWon")
 
 let humanScore = 0
 let computerScore = 0
@@ -10,9 +12,6 @@ let clickCount = 0
 let humanChoice;
 let computerChoice;
 let winner;
-
-
-
 
 
 //===FUNCTIONS===//
@@ -39,16 +38,8 @@ function playRound(event) {
 
 function startGame(){
     startGameScreen.setAttribute("style", "display: none")
+    gameOverScreen.setAttribute("style", "display: none")
     inGameScreen.setAttribute("style", "display: flex")
-}
-
-function gameOver(){
-    startGameScreen.setAttribute("style", "display: flex")
-    inGameScreen.setAttribute("style", "display: none")
-
-    humanScore = 0;
-    computerScore = 0;
-    clickCount = 0
 }
 
 function getHumanChoice(event) {
@@ -85,10 +76,32 @@ function decideWinner(humanChoice, computerChoice){
         console.log("Computer wins!")
         computerScore++
     }
-    return winner;
+    return {winner, humanScore, computerScore}
 }
 
+function gameOver(){
+    startGameScreen.setAttribute("style", "display: none")
+    inGameScreen.setAttribute("style", "display: none")
+    gameOverScreen.setAttribute("style", "display:flex")
 
+    function findOverallWinner() {
+        if(humanScore === computerScore) {
+            overallWinner.textContent = "It's a draw"
+        } else if (humanScore > computerScore) {
+            overallWinner.textContent = "You win!"
+        } else if (computerScore > humanScore) {
+            overallWinner.textContent = "Loser!"
+        } else {
+            overallWinner.textContent = "Something went wrong."
+        }
+    }
+
+    findOverallWinner()
+
+    humanScore = 0;
+    computerScore = 0;
+    clickCount = 0
+}
 
 
 //===DOM MANIPULATION===//

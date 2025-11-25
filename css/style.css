@@ -18,12 +18,21 @@ body {
 }
 
 /* HUMAN CHOICES OPTIONS STYLING */
-.playGameScreen, ul, li, .human-choices-option {
+#startGameScreen, ul, li, .human-choices-option {
     display: flex;
 }
 
-.playGameScreen {
+#startGameScreen {
     min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameOverScreen {
+    display: none;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
 }
 
 div.human-choices {
@@ -57,4 +66,9 @@ li {
 h4 {
     font-family: "Barrio";
     font-size: 48px;
+}
+
+h1 {
+    font-family: "Barrio";
+    font-size: 120px;
 }
