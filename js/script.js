@@ -5,6 +5,10 @@
 
 
 //VARIABLES
+const gameStartButton = document.createElement("button")
+const startGameScreen = document.querySelector("#startGameScreen")
+const inGameScreen = document.querySelector(".human-choices")
+
 let humanScore = 0
 let computerScore = 0
 let humanChoice;
@@ -26,16 +30,9 @@ function getComputerChoice(){
     return computerChoice
 }
 // Prompt the user to randomly choose one: Rock, Paper, or Scissors and show choice
-function getHumanChoice(){
-    let randomLetter = prompt("Enter 'r' for rock, 'p' for paper, or 's' for scissors. Go!").toLowerCase()
-    if (randomLetter == "r"){
-        humanChoice = "Rock";
-    } else if (randomLetter == "p"){
-        humanChoice = "Paper";
-    } else if (randomLetter == "s"){
-        humanChoice = "Scissors";
-    }
-    console.log("You chose " + humanChoice)
+function getHumanChoice(event) {
+    const humanChoice = event.currentTarget.id.charAt(0).toUpperCase() + event.currentTarget.id.slice(1);
+    console.log("You chose " + humanChoice);
     return humanChoice
 }
 
@@ -58,6 +55,7 @@ function decideWinner(humanChoice, computerChoice){
 
 //Play a single round
 function playRound(){
+    startGame()
     getHumanChoice()
     getComputerChoice()
     decideWinner(humanChoice, computerChoice)
@@ -72,4 +70,32 @@ function playRound(){
     return computerScore, humanScore
 }
 
+function loadGameStartState() {
+    gameStartButton.setAttribute("style",
+        "color: white; background-color: black; width: 200px; height: 100px; border-radius: 20px");
+    gameStartButton.textContent = "Play"
+    startGameScreen.appendChild(gameStartButton)
+}
 
+function startGame(){
+    startGameScreen.setAttribute("style", "display: none")
+    inGameScreen.setAttribute("style", "display: flex")
+}
+
+
+
+
+
+
+const humanSelection = document.querySelectorAll(".human-choices-button");
+humanSelection.forEach(button => {
+    button.addEventListener("click", getHumanChoice);
+})
+
+
+
+//===START===//
+
+//On page load
+document.addEventListener("DOMContentLoaded", loadGameStartState)
+gameStartButton.addEventListener("click", playRound)

@@ -18,10 +18,18 @@ body {
 }
 
 /* HUMAN CHOICES OPTIONS STYLING */
-div.human-choices, ul, li, .human-choices-option {
+.playGameScreen, ul, li, .human-choices-option {
     display: flex;
 }
 
+.playGameScreen {
+    min-height: 100vh;
+}
+
+div.human-choices {
+    display: none;
+    min-height: 100vh;
+}
 
 button.human-choices-button {
     background: none;
