@@ -9,9 +9,6 @@ const overallWinner = document.querySelector("#whoWon")
 let humanScore = 0
 let computerScore = 0
 let clickCount = 0
-let humanChoice;
-let computerChoice;
-let winner;
 
 
 //===FUNCTIONS===//
@@ -24,8 +21,8 @@ function loadGameStartState() {
 }
 
 function playRound(event) {
-    getHumanChoice(event);
-    getComputerChoice()
+    let humanChoice = getHumanChoice(event);
+    let computerChoice = getComputerChoice()
     decideWinner(humanChoice, computerChoice)
     console.log({computerScore, humanScore});
 
@@ -43,12 +40,14 @@ function startGame(){
 }
 
 function getHumanChoice(event) {
+    let humanChoice;
     humanChoice = event.currentTarget.id.charAt(0).toUpperCase() + event.currentTarget.id.slice(1);
     console.log("You chose " + humanChoice);
     return humanChoice
 }
 
 function getComputerChoice(){
+    let computerChoice;
     let randomNumber = Math.floor(Math.random() * 3);
     if (randomNumber === 0){
         computerChoice = "Rock";
@@ -62,6 +61,7 @@ function getComputerChoice(){
 }
 
 function decideWinner(humanChoice, computerChoice){
+    let winner;
     if (humanChoice === computerChoice){
         console.log("It's a draw.");
         winner = null
