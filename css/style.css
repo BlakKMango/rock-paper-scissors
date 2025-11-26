@@ -75,8 +75,25 @@ h1 {
     transform: translateY(150px);
 
 }
+/* SCREEN 3 - RESULTS SCREEN */
+#result-screen {
+    display: none
+}
 
-/* SCREEN 3 - GAME OVER */
+.result {
+    width: 50%;
+    flex: auto;
+}
+
+#human-result {
+    background-color: black;
+}
+
+#computer-result {
+    background-color: rgb(255, 251, 0);
+}
+
+/* SCREEN 4 - GAME OVER */
 #game-over-screen {
     display: none;
     flex-direction: column;
