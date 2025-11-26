@@ -87,17 +87,33 @@ h1 {
 /* SCREEN 3 - RESULTS SCREEN */
 #result-screen {
     display: none;
+    justify-content: space-between;
     height: 100%;
-    background-image: url(../img/results_background_image.webp);
+    background: url(../img/results_background_image.webp) no-repeat center center fixed;
     background-size: cover;
     background-repeat: no-repeat;
+    overflow: hidden;
 }
 
 .result {
     display:flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex: none;
+    max-width: 50%;
     height: 100%;
-    width: 50%;
-    flex: auto;
+}
+
+#human-image {
+    padding: 0;
+    margin: 0;
+    transform: translateY(30%);
+}
+
+#computer-image {
+    padding: 0 0 0 150px;
+    margin: 0;
+    transform: rotateZ(180deg) translateY(70%);
 }
 
 /* SCREEN 4 - GAME OVER */
