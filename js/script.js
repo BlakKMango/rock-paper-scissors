@@ -49,12 +49,12 @@ function getHumanChoice(event) {
 }
 
 function getComputerChoice(){
-    let randomNumber = Math.random() * (3 - 0) + 0;
-    if (randomNumber < 1){
+    let randomNumber = Math.floor(Math.random() * 3);
+    if (randomNumber === 0){
         computerChoice = "Rock";
-    } else if (randomNumber >= 1 && randomNumber < 2){
+    } else if (randomNumber === 1){
         computerChoice = "Paper";
-    } else if (randomNumber >= 2 && randomNumber < 3) {
+    } else if (randomNumber === 2) {
         computerChoice = "Scissors";
     }
     console.log("Computer chose " + computerChoice)
