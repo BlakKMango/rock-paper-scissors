@@ -1,11 +1,7 @@
 //VARIABLES
-const gameStartButton = document.createElement("button")
-const startGameScreen = document.querySelector("#start-game-screen")
-const inGameScreen = document.querySelector("#human-choices")
+const startButton = document.querySelector("#start-button")
 const humanChoiceButton = document.querySelectorAll(".human-choices-button");
-const gameOverScreen = document.querySelector("#game-over-screen")
 const overallWinner = document.querySelector("#who-won")
-const resultScreen = document.querySelector("#result-screen")
 const replayButton = document.querySelector("#replay-button");
 
 const gamestate = {
@@ -15,27 +11,39 @@ const gamestate = {
     Leader: "Hard to say"
 }
 
+const screens = {
+    start: document.querySelector("#start-game-screen"),
+    choice: document.querySelector("#human-choices"),
+    gameOver: document.querySelector("#game-over-screen"),
+    results: document.querySelector("#result-screen")
+};
+
+
 
 //===FUNCTIONS===//
 
+function showScreen(name) {
+    Object.values(screens).forEach(screen => {
+        screen.style.display = "none"
+    })
+
+    screens[name].style.display = "flex";
+}
+
 function loadGameStartState() {
-    gameStartButton.setAttribute("style",
-        "color: white; background-color: black; width: 200px; height: 100px; border-radius: 20px");
-    gameStartButton.textContent = "Play"
-    startGameScreen.appendChild(gameStartButton)
-    startGameScreen.style.display = "flex";
-    inGameScreen.style.display = "none";
-    gameOverScreen.style.display = "none";
-    resultScreen.style.display = "none";
+    showScreen("start")
 }
 
 function startGame(){
-    startGameScreen.setAttribute("style", "display: none")
-    gameOverScreen.setAttribute("style", "display: none")
-    inGameScreen.setAttribute("style", "display: flex")
+    showScreen("choice")
+}
+
+function showResultsScreen() {
+
 }
 
 function playRound(event) {
+
     let humanChoice = getHumanChoice(event);
     let computerChoice = getComputerChoice()
     decideWinner(humanChoice, computerChoice)
@@ -102,10 +110,7 @@ function findOverallWinner() {
 }
 
 function gameOver(){
-    startGameScreen.setAttribute("style", "display: none")
-    inGameScreen.setAttribute("style", "display: none")
-    gameOverScreen.setAttribute("style", "display:flex")
-
+    showScreen("gameOver")
     findOverallWinner()
 
     gamestate.humanScore = 0;
@@ -117,7 +122,7 @@ function gameOver(){
 
 document.addEventListener("DOMContentLoaded", loadGameStartState)
 
-gameStartButton.addEventListener("click", startGame)
+startButton.addEventListener("click", startGame);
 
 humanChoiceButton.forEach(button => {
     button.addEventListener("click", playRound);
