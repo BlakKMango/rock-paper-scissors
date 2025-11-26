@@ -6,9 +6,12 @@ const humanChoiceButton = document.querySelectorAll(".human-choices-button");
 const gameOverScreen = document.querySelector("#gameOverScreen")
 const overallWinner = document.querySelector("#whoWon")
 
-let humanScore = 0
-let computerScore = 0
-let clickCount = 0
+const gamestate = {
+    humanScore: 0,
+    computerScore: 0,
+    clickCount: 0,
+    Leader: "Hard to say"
+}
 
 
 //===FUNCTIONS===//
@@ -24,11 +27,12 @@ function playRound(event) {
     let humanChoice = getHumanChoice(event);
     let computerChoice = getComputerChoice()
     decideWinner(humanChoice, computerChoice)
-    console.log({computerScore, humanScore});
+    console.log(gamestate.computerScore);
+    console.log(gamestate.humanScore);
 
-    clickCount++
+    gamestate.clickCount++
 
-    if (clickCount === 5){
+    if (gamestate.clickCount === 5){
         gameOver()
     }
 }
@@ -70,13 +74,25 @@ function decideWinner(humanChoice, computerChoice){
         || (humanChoice === "Paper" && computerChoice === "Rock")){
         winner = "human";
         console.log("You win!");
-        humanScore++
+        gamestate.humanScore++
     } else {
         winner = "computer";
         console.log("Computer wins!")
-        computerScore++
+        gamestate.computerScore++
     }
-    return {winner, humanScore, computerScore}
+    return {winner, humanScore:gamestate.humanScore, computerScore:gamestate.computerScore}
+}
+
+function findOverallWinner() {
+    if(gamestate.humanScore === gamestate.computerScore) {
+        overallWinner.textContent = "It's a draw"
+    } else if (gamestate.humanScore > gamestate.computerScore) {
+        overallWinner.textContent = "You win!"
+    } else if (gamestate.computerScore > gamestate.humanScore) {
+        overallWinner.textContent = "Loser!"
+    } else {
+        overallWinner.textContent = "Something went wrong."
+    }
 }
 
 function gameOver(){
@@ -84,23 +100,11 @@ function gameOver(){
     inGameScreen.setAttribute("style", "display: none")
     gameOverScreen.setAttribute("style", "display:flex")
 
-    function findOverallWinner() {
-        if(humanScore === computerScore) {
-            overallWinner.textContent = "It's a draw"
-        } else if (humanScore > computerScore) {
-            overallWinner.textContent = "You win!"
-        } else if (computerScore > humanScore) {
-            overallWinner.textContent = "Loser!"
-        } else {
-            overallWinner.textContent = "Something went wrong."
-        }
-    }
-
     findOverallWinner()
 
-    humanScore = 0;
-    computerScore = 0;
-    clickCount = 0
+    gamestate.humanScore = 0;
+    gamestate.computerScore = 0;
+    gamestate.clickCount = 0;
 }
 
 
