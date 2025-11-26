@@ -86,20 +86,18 @@ h1 {
 }
 /* SCREEN 3 - RESULTS SCREEN */
 #result-screen {
-    display: none
+    display: none;
+    height: 100%;
+    background-image: url(../img/results_background_image.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .result {
+    display:flex;
+    height: 100%;
     width: 50%;
     flex: auto;
-}
-
-#human-result {
-    background-color: black;
-}
-
-#computer-result {
-    background-color: rgb(255, 251, 0);
 }
 
 /* SCREEN 4 - GAME OVER */

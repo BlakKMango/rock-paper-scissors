@@ -18,8 +18,6 @@ const screens = {
     results: document.querySelector("#result-screen")
 };
 
-
-
 //===FUNCTIONS===//
 
 function showScreen(name) {
@@ -43,9 +41,8 @@ function showResultsScreen() {
 }
 
 function playRound(event) {
-
     let humanChoice = getHumanChoice(event);
-    let computerChoice = getComputerChoice()
+    let computerChoice = getComputerChoice();
     decideWinner(humanChoice, computerChoice)
     console.log(gamestate.computerScore);
     console.log(gamestate.humanScore);
@@ -61,6 +58,8 @@ function getHumanChoice(event) {
     let humanChoice;
     humanChoice = event.currentTarget.id.charAt(0).toUpperCase() + event.currentTarget.id.slice(1);
     console.log("You chose " + humanChoice);
+
+    showScreen("results")
     return humanChoice
 }
 
