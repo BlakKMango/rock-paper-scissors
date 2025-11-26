@@ -1,10 +1,10 @@
 //VARIABLES
 const gameStartButton = document.createElement("button")
-const startGameScreen = document.querySelector("#startGameScreen")
-const inGameScreen = document.querySelector(".human-choices")
+const startGameScreen = document.querySelector("#start-game-screen")
+const inGameScreen = document.querySelector("#human-choices")
 const humanChoiceButton = document.querySelectorAll(".human-choices-button");
-const gameOverScreen = document.querySelector("#gameOverScreen")
-const overallWinner = document.querySelector("#whoWon")
+const gameOverScreen = document.querySelector("#game-over-screen")
+const overallWinner = document.querySelector("#who-won")
 
 const gamestate = {
     humanScore: 0,
@@ -106,7 +106,6 @@ function gameOver(){
     gamestate.computerScore = 0;
     gamestate.clickCount = 0;
 }
-
 
 //===DOM MANIPULATION===//
 

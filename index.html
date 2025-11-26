@@ -8,9 +8,9 @@
     <script src="js/script.js" defer></script>
 </head>
 <body>
-    <div id="startGameScreen">
+    <div class="main-screen" id="start-game-screen">
     </div>
-    <div class="human-choices">
+    <div class="main-screen" id="human-choices">
         <ul class="human-choices-list">
             <li class="human-choices-option">
                 <button class="human-choices-button" id="rock"><img class="human-choices-img" src="./img/human_fist.png" alt="a human fist cartoon"></button>
@@ -26,9 +26,12 @@
             </li>
         </ul>
     </div>
-    <div id="gameOverScreen">
-        <h1 id = "whoWon"></h1>
-        <!-- <button class="human-choices-button" id="newGameButton"><img class="human-choices-img" src="./img/human_scissors.png" alt="a hand making a peace sign cartoon"></button> -->
+    <div class="main-screen" id="game-over-screen">
+        <h1 id = "who-won"></h1>
+        <div id = "hands-wrapper">
+            <button id = "replay-button">play again</button>
+            <img id="love-hands" src="./img/robot_hands_love.png" alt="blue cartoon hands making a love heart shape">
+        </div>
     </div>
 </body>
 </html>
