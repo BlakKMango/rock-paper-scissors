@@ -3,7 +3,7 @@ const startButton = document.querySelector(".start-button")
 const humanChoiceButton = document.querySelectorAll(".human-choices-button");
 const overallWinner = document.querySelector("#who-won")
 const replayButton = document.querySelector("#replay-button");
-
+const playRoundButton = document.querySelector("#round");
 
 
 const gamestate = {
@@ -51,7 +51,11 @@ function playRound(event) {
 
     if (gamestate.clickCount === 5){
         gameOver()
+    } else {
+        playRoundButton.textContent = "Play round " + (gamestate.clickCount + 1)
     }
+
+
 }
 
 function getHumanChoice(event) {
@@ -149,8 +153,6 @@ function showResults(humanChoice, computerChoice) {
 
     humanCounter.textContent = "Score: " + gamestate.humanScore
     computerCounter.textContent = "Score: " + gamestate.computerScore
-
-
 }
 
 
@@ -165,3 +167,5 @@ humanChoiceButton.forEach(button => {
 })
 
 replayButton.addEventListener("click", loadGameStartState)
+
+playRoundButton.addEventListener("click", startGame)
