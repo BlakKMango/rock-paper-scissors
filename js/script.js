@@ -4,6 +4,8 @@ const humanChoiceButton = document.querySelectorAll(".human-choices-button");
 const overallWinner = document.querySelector("#who-won")
 const replayButton = document.querySelector("#replay-button");
 
+
+
 const gamestate = {
     humanScore: 0,
     computerScore: 0,
@@ -36,18 +38,17 @@ function startGame(){
     showScreen("choice")
 }
 
-function showResultsScreen() {
-
-}
-
 function playRound(event) {
     let humanChoice = getHumanChoice(event);
     let computerChoice = getComputerChoice();
+    
     decideWinner(humanChoice, computerChoice)
     console.log(gamestate.computerScore);
     console.log(gamestate.humanScore);
 
     gamestate.clickCount++
+
+    showResults(humanChoice, computerChoice);
 
     if (gamestate.clickCount === 5){
         gameOver()
@@ -60,6 +61,8 @@ function getHumanChoice(event) {
     console.log("You chose " + humanChoice);
 
     showScreen("results")
+
+    // Function to insert the correct image into the DOM
     return humanChoice
 }
 
@@ -116,6 +119,34 @@ function gameOver(){
     gamestate.computerScore = 0;
     gamestate.clickCount = 0;
 }
+
+function showResults(humanChoice, computerChoice) {
+    const humanText = document.querySelector("#human-choice-text");
+    const humanImg = document.querySelector("#human-result-image");
+    const computerText = document.querySelector("#computer-choice-text");
+    const computerImg = document.querySelector("#computer-result-image");
+
+    humanText.textContent = humanChoice;
+
+    if(humanChoice === "Rock") {
+        humanImg.src = "./img/human_fist.png";
+    } else if(humanChoice === "Paper") {
+        humanImg.src = "./img/human_paper.png";
+    } else if(humanChoice === "Scissors") {
+        humanImg.src = "./img/human_scissors.png";
+    }
+
+    computerText.textContent = computerChoice;
+
+    if(computerChoice === "Rock") {
+        computerImg.src = "./img/computer_fist.png";
+    } else if(computerChoice === "Paper") {
+        computerImg.src = "./img/computer_paper.png";
+    } else if(computerChoice === "Scissors") {
+        computerImg.src = "./img/computer_scissors.png";
+    }
+}
+
 
 //===DOM MANIPULATION===//
 
