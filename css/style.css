@@ -31,13 +31,14 @@ html, body {
     align-items: center;
 }
 
-#start-button {
+.start-button {
     color: white;
     background-color: black;
     width: 200px;
     height: 100px;
     border-radius: 20px;
     font-family: "Barrio", Courier, monospace;
+    font-size: 32px;
 }
 
 
@@ -130,6 +131,12 @@ h1 {
     transform: rotateZ(180deg) translateY(30%);
 }
 
+#round {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 /* SCREEN 4 - GAME OVER */
 #game-over-screen {

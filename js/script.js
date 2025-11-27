@@ -1,5 +1,5 @@
 //VARIABLES
-const startButton = document.querySelector("#start-button")
+const startButton = document.querySelector(".start-button")
 const humanChoiceButton = document.querySelectorAll(".human-choices-button");
 const overallWinner = document.querySelector("#who-won")
 const replayButton = document.querySelector("#replay-button");
@@ -10,7 +10,6 @@ const gamestate = {
     humanScore: 0,
     computerScore: 0,
     clickCount: 0,
-    Leader: "Hard to say"
 }
 
 const screens = {
@@ -150,6 +149,8 @@ function showResults(humanChoice, computerChoice) {
 
     humanCounter.textContent = "Score: " + gamestate.humanScore
     computerCounter.textContent = "Score: " + gamestate.computerScore
+
+
 }
 
 
