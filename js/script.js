@@ -125,6 +125,8 @@ function showResults(humanChoice, computerChoice) {
     const humanImg = document.querySelector("#human-result-image");
     const computerText = document.querySelector("#computer-choice-text");
     const computerImg = document.querySelector("#computer-result-image");
+    const humanCounter = document.querySelector("#human-counter");
+    const computerCounter = document.querySelector("#computer-counter")
 
     humanText.textContent = humanChoice;
 
@@ -145,6 +147,9 @@ function showResults(humanChoice, computerChoice) {
     } else if(computerChoice === "Scissors") {
         computerImg.src = "./img/computer_scissors.png";
     }
+
+    humanCounter.textContent = "Score: " + gamestate.humanScore
+    computerCounter.textContent = "Score: " + gamestate.computerScore
 }
 
 
