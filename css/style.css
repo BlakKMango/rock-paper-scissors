@@ -113,12 +113,20 @@ h1 {
     align-items: center;
 }
 
-.result-image {
+#human-result-image {
     max-width: 80%;
     max-height: 60vh;   /*can adjust this*/
     height: auto;
     object-fit: contain;
     transform: translateY(30%);
+}
+
+#computer-result-image {
+    max-width: 80%;
+    max-height: 60vh;   /*can adjust this*/
+    height: auto;
+    object-fit: contain;
+    transform: rotateZ(180deg) translateY(30%);
 }
 
 
