@@ -34,8 +34,11 @@ function loadGameStartState() {
 }
 
 function startGame(){
+    resetResultsPage()
     showScreen("choice")
+    
 }
+
 
 function playRound(event) {
     let humanChoice = getHumanChoice(event);
@@ -54,8 +57,6 @@ function playRound(event) {
     } else {
         playRoundButton.textContent = "Play round " + (gamestate.clickCount + 1)
     }
-
-
 }
 
 function getHumanChoice(event) {
@@ -131,8 +132,6 @@ function showResults(humanChoice, computerChoice) {
     const humanCounter = document.querySelector("#human-counter");
     const computerCounter = document.querySelector("#computer-counter")
 
-    humanText.textContent = humanChoice;
-
     if(humanChoice === "Rock") {
         humanImg.src = "./img/human_fist.png";
     } else if(humanChoice === "Paper") {
@@ -141,8 +140,7 @@ function showResults(humanChoice, computerChoice) {
         humanImg.src = "./img/human_scissors.png";
     }
 
-    computerText.textContent = computerChoice;
-
+    
     if(computerChoice === "Rock") {
         computerImg.src = "./img/computer_fist.png";
     } else if(computerChoice === "Paper") {
@@ -151,8 +149,23 @@ function showResults(humanChoice, computerChoice) {
         computerImg.src = "./img/computer_scissors.png";
     }
 
+
+    humanText.textContent = humanChoice;
     humanCounter.textContent = "Score: " + gamestate.humanScore
+    computerText.textContent = computerChoice;
     computerCounter.textContent = "Score: " + gamestate.computerScore
+
+}
+
+
+
+function resetResultsPage(){
+    const resultsPageContainer = document.querySelector("#result-screen");
+    const resultsPageElements = resultsPageContainer.querySelectorAll("div, h4, h1, img, button");
+
+    for (const element of resultsPageElements) {
+        element.removeAttribute("style");
+    }
 }
 
 
