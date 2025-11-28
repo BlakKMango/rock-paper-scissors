@@ -116,19 +116,83 @@ h1 {
 }
 
 #human-result-image {
+    opacity: 0;
     max-width: 80%;
     max-height: 60vh;   /*can adjust this*/
     height: auto;
     object-fit: contain;
+    transform: translateY(100%);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.results-active #human-result-image {
     transform: translateY(30%);
+    opacity: 1;
+
+}
+
+#human-choice-text {
+    opacity: 0;
+    transform: translateY(-50%);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.results-active #human-choice-text {
+    opacity: 1;
+    transform: translate(0);
+}
+
+#human-counter{
+    opacity: 0;
+    transform: translateY(-50%);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.results-active #human-counter {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 1.5s;
 }
 
 #computer-result-image {
+    opacity: 0;
     max-width: 80%;
     max-height: 60vh;   /*can adjust this*/
     height: auto;
     object-fit: contain;
+    transform: rotateZ(180deg) translateY(100%);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.results-active #computer-result-image {
     transform: rotateZ(180deg) translateY(30%);
+    opacity: 1;
+    transition-delay: 1s;
+}
+
+#computer-choice-text {
+    opacity: 0;
+    transform: translateY(50%);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.results-active #computer-choice-text {
+    opacity: 1;
+    transform: translate(0);
+    transition-delay: 1s;
+}
+
+
+#computer-counter{
+    opacity: 0;
+    transform: translateY(-50%);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.results-active #computer-counter {
+    transform: translateY(0);
+    transition-delay: 1.5s;
+    opacity: 1;
 }
 
 #round {
@@ -138,7 +202,15 @@ h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transition: opacity 0.5s ease;
 }
+
+#round.results-active {
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: 3s;
+}
+
 
 /* SCREEN 4 - GAME OVER */
 #game-over-screen {

@@ -4,6 +4,8 @@ const humanChoiceButton = document.querySelectorAll(".human-choices-button");
 const overallWinner = document.querySelector("#who-won")
 const replayButton = document.querySelector("#replay-button");
 const playRoundButton = document.querySelector("#round");
+const resultsPageContainer = document.querySelector("#result-screen");
+const resultsPageElements = resultsPageContainer.querySelectorAll("div, h4, h1, img, button");
 
 
 const gamestate = {
@@ -57,6 +59,8 @@ function playRound(event) {
     } else {
         playRoundButton.textContent = "Play round " + (gamestate.clickCount + 1)
     }
+
+    setTimeout(animateResultsPage, 500)
 }
 
 function getHumanChoice(event) {
@@ -149,22 +153,22 @@ function showResults(humanChoice, computerChoice) {
         computerImg.src = "./img/computer_scissors.png";
     }
 
-
     humanText.textContent = humanChoice;
     humanCounter.textContent = "Score: " + gamestate.humanScore
     computerText.textContent = computerChoice;
     computerCounter.textContent = "Score: " + gamestate.computerScore
-
 }
 
-
+function animateResultsPage() {
+    for (const element of resultsPageElements){
+        element.classList.add("results-active");
+    }
+}
 
 function resetResultsPage(){
-    const resultsPageContainer = document.querySelector("#result-screen");
-    const resultsPageElements = resultsPageContainer.querySelectorAll("div, h4, h1, img, button");
-
     for (const element of resultsPageElements) {
         element.removeAttribute("style");
+        element.classList.remove("results-active")
     }
 }
 
