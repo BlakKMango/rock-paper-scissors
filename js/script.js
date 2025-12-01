@@ -38,7 +38,6 @@ function loadGameStartState() {
 function startGame(){
     resetResultsPage();
     if(gamestate.clickCount === 5){
-        showScreen("start");
         gamestate.humanScore = 0;
         gamestate.computerScore = 0;
         gamestate.clickCount = 0;
@@ -61,7 +60,8 @@ function playRound(event) {
     showResults(humanChoice, computerChoice);
 
     if (gamestate.clickCount === 5){
-        playRoundButton.textContent = "Play Again?";      
+        playRoundButton.textContent = "Play Again?";
+        showOverallWinner()
     } else {
         playRoundButton.textContent = "Play round " + (gamestate.clickCount + 1)
     }

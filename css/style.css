@@ -122,7 +122,7 @@ h1 {
     height: auto;
     object-fit: contain;
     transform: translateY(100%);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition: opacity 0.1s linear, transform 0.1s linear;
 }
 
 .results-active #human-result-image {
@@ -134,7 +134,7 @@ h1 {
 #human-choice-text {
     opacity: 0;
     transform: translateY(-50%);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition: opacity 0.1s linear, transform 0.1s linear;
 }
 
 .results-active #human-choice-text {
@@ -145,7 +145,7 @@ h1 {
 #human-counter{
     opacity: 0;
     transform: translateY(-50%);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition: opacity 0.1s linear, transform 0.1s linear;
 }
 
 .results-active #human-counter {
@@ -161,32 +161,32 @@ h1 {
     height: auto;
     object-fit: contain;
     transform: rotateZ(180deg) translateY(100%);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition: opacity 0.1s linear, transform 0.1s linear;
 }
 
 .results-active #computer-result-image {
     transform: rotateZ(180deg) translateY(30%);
     opacity: 1;
-    transition-delay: 1s;
+    transition-delay: 0.5s;
 }
 
 #computer-choice-text {
     opacity: 0;
     transform: translateY(50%);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition: opacity 0.1s linear, transform 0.1s linear;
 }
 
 .results-active #computer-choice-text {
     opacity: 1;
     transform: translate(0);
-    transition-delay: 1s;
+    transition-delay: 0.5s;
 }
 
 
 #computer-counter{
     opacity: 0;
     transform: translateY(-50%);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition: opacity 0.1s linear, transform 0.1s linear;
 }
 
 .results-active #computer-counter {
@@ -202,13 +202,13 @@ h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    transition: opacity 0.5s ease;
+    transition: opacity 0.2s ease-in;
 }
 
 #round.results-active {
     opacity: 1;
     pointer-events: auto;
-    transition-delay: 3s;
+    transition-delay: 2s;
 }
 
 
@@ -228,18 +228,20 @@ h1 {
     transform: translateY(30%);
 }
 
-.replay-button {
-    display: none;
+#who-won {
+    opacity: 0;
     background: none;
     position: absolute;
-    margin-top: 25%;
+    margin-bottom: 15%;
     border: none;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 24px;
+    font-family: "Barrio", Helvetica, sans-serif;
+    font-size: 56px;
 
-    transition: transform 0.15s ease;
+    transition: opacity 0.2s ease-in;
 }
 
-#replay-button:hover {
-    transform: scale(150%);
+#who-won.results-active {
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: 2s;
 }
