@@ -228,10 +228,11 @@ h1 {
     transform: translateY(30%);
 }
 
-#replay-button {
+.replay-button {
+    display: none;
     background: none;
     position: absolute;
-    margin-top: 18%;
+    margin-top: 25%;
     border: none;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 24px;

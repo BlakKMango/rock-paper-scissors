@@ -2,11 +2,12 @@
 const startButton = document.querySelector(".start-button")
 const humanChoiceButton = document.querySelectorAll(".human-choices-button");
 const overallWinner = document.querySelector("#who-won")
-const replayButton = document.querySelector("#replay-button");
+const replayButton = document.querySelector(".replay-button");
 const playRoundButton = document.querySelector("#round");
 const resultsPageContainer = document.querySelector("#result-screen");
 const resultsPageElements = resultsPageContainer.querySelectorAll("div, h4, h1, img, button");
-
+const humanCounter = document.querySelector("#human-counter");
+const computerCounter = document.querySelector("#computer-counter")
 
 const gamestate = {
     humanScore: 0,
@@ -17,7 +18,6 @@ const gamestate = {
 const screens = {
     start: document.querySelector("#start-game-screen"),
     choice: document.querySelector("#human-choices"),
-    gameOver: document.querySelector("#game-over-screen"),
     results: document.querySelector("#result-screen")
 };
 
@@ -36,9 +36,15 @@ function loadGameStartState() {
 }
 
 function startGame(){
-    resetResultsPage()
-    showScreen("choice")
-    
+    resetResultsPage();
+    if(gamestate.clickCount === 5){
+        showScreen("start");
+        gamestate.humanScore = 0;
+        gamestate.computerScore = 0;
+        gamestate.clickCount = 0;
+        showScreen("start");
+    } else
+        showScreen("choice")
 }
 
 
@@ -55,12 +61,11 @@ function playRound(event) {
     showResults(humanChoice, computerChoice);
 
     if (gamestate.clickCount === 5){
-        gameOver()
+        playRoundButton.textContent = "Play Again?";      
     } else {
         playRoundButton.textContent = "Play round " + (gamestate.clickCount + 1)
     }
 
-    setTimeout(animateResultsPage, 500)
 }
 
 function getHumanChoice(event) {
@@ -107,34 +112,24 @@ function decideWinner(humanChoice, computerChoice){
     return {winner, humanScore:gamestate.humanScore, computerScore:gamestate.computerScore}
 }
 
-function findOverallWinner() {
+function showOverallWinner() {
     if(gamestate.humanScore === gamestate.computerScore) {
         overallWinner.textContent = "It's a draw"
-    } else if (gamestate.humanScore > gamestate.computerScore) {
-        overallWinner.textContent = "You win!"
-    } else if (gamestate.computerScore > gamestate.humanScore) {
-        overallWinner.textContent = "Loser!"
-    } else {
-        overallWinner.textContent = "Something went wrong."
-    }
+        } else if (gamestate.humanScore > gamestate.computerScore) {
+            overallWinner.textContent = "You win!"
+        } else if (gamestate.computerScore > gamestate.humanScore) {
+            overallWinner.textContent = "Loser!"
+        } else {
+            overallWinner.textContent = "Something went wrong."
+        }
 }
 
-function gameOver(){
-    showScreen("gameOver")
-    findOverallWinner()
-
-    gamestate.humanScore = 0;
-    gamestate.computerScore = 0;
-    gamestate.clickCount = 0;
-}
 
 function showResults(humanChoice, computerChoice) {
     const humanText = document.querySelector("#human-choice-text");
     const humanImg = document.querySelector("#human-result-image");
     const computerText = document.querySelector("#computer-choice-text");
     const computerImg = document.querySelector("#computer-result-image");
-    const humanCounter = document.querySelector("#human-counter");
-    const computerCounter = document.querySelector("#computer-counter")
 
     if(humanChoice === "Rock") {
         humanImg.src = "./img/human_fist.png";
@@ -157,6 +152,8 @@ function showResults(humanChoice, computerChoice) {
     humanCounter.textContent = "Score: " + gamestate.humanScore
     computerText.textContent = computerChoice;
     computerCounter.textContent = "Score: " + gamestate.computerScore
+
+    setTimeout(animateResultsPage, 500);
 }
 
 function animateResultsPage() {
@@ -182,7 +179,5 @@ startButton.addEventListener("click", startGame);
 humanChoiceButton.forEach(button => {
     button.addEventListener("click", playRound);
 })
-
-replayButton.addEventListener("click", loadGameStartState)
 
 playRoundButton.addEventListener("click", startGame)
